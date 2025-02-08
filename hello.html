@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        background: linear-gradient(to bottom right, #ffe6e6, #ffb3b3);
+        font-family: "Arial", sans-serif;
+        overflow: hidden;
+      }
+
+      .message {
+        font-size: 3rem;
+        color: #ff4d4d;
+        text-align: center;
+        margin: 2rem;
+        animation: pulse 2s infinite;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .flower-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .flower {
+        position: absolute;
+        font-size: 2rem;
+        animation: float 6s infinite;
+        opacity: 0.8;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+        }
+        100% {
+          transform: translateY(-100vh) rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="message">Will You Be My Valentine?</div>
+    <div class="message">Tevy Baby 🥺</div>
+
+    <div class="flower-container" id="flowerContainer"></div>
+
+    <script>
+      const flowers = ["🌸", "🌹", "🌺", "🌻", "🌼", "💐", "🌷"];
+      const container = document.getElementById("flowerContainer");
+
+      function createFlower() {
+        const flower = document.createElement("div");
+        flower.className = "flower";
+        flower.textContent =
+          flowers[Math.floor(Math.random() * flowers.length)];
+        flower.style.left = Math.random() * 100 + "vw";
+        flower.style.animationDuration = 6 + Math.random() * 4 + "s";
+        container.appendChild(flower);
+
+        setTimeout(() => {
+          flower.remove();
+        }, 10000);
+      }
+
+      setInterval(createFlower, 300);
+    </script>
+  </body>
+</html>
